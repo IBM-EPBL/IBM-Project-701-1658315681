@@ -1,0 +1,27 @@
+.accountButton{
+    max-width: 25%;
+    max-height: 10% !important;
+}
+.registerButton{
+    margin-top: 1% !important;
+}
+.errMessage{
+    color:red !important;
+    margin:  1% !important;
+}
+.introCard{
+    color:green;
+    font-size: 25px;
+
+}
+
+.mb-auto{
+    height: 500px;
+}
+.form-control{
+    color : black;
+}
+
+
+
+
