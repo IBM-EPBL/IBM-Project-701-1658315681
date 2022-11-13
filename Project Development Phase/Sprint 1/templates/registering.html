@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Registraion Page
+    </title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+
+
+    <link href={{url_for('static',filename="/stylesheets/styles.css" )}} rel="stylesheet">
+    <style>
+        body {
+            background-image: url('logo.png');
+        }
+    </style>
+</head>
+
+<body>
+    <!--<main class="form-registering w-100 m-auto">
+            <form action = "/registering" method="POST">
+            <div class="form-floating">
+                    <label for="floatingInput"><b>First Name : </b></label>
+                    <input type="text" class="form-control" id="floatingInput" placeholder="firstname" name = "firstname">
+                  </div><br>
+        <div class="form-floating">
+            <label for="floatingInput"><b>Email address : </b></label>
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name = "email">
+          </div><br>
+          <div class="form-floating">
+        <label for="floatingPassword"><b>Password : </b></label>
+      <input type="Password" class="form-control" id="floatingPassword" placeholder="Password" name = "Password">
+      
+    </div>-->
+    <center>
+        <section class="vh-100" style="background-color: #eee;">
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-lg-12 col-xl-11">
+                        <div class="card text-black" style="border-radius: 25px;">
+                            <div class="card-body p-md-5">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                                        <center>
+                                            <h1>
+                                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+                                            </h1>
+                                        </center>
+                                        <div
+                                            class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                                                class="img-fluid" alt="Sample image">
+
+                                        </div>
+
+                                        <form class="mx-1 mx-md-4">
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <label class="form-label" for="form3Example1c">Your Name </label>
+                                                    <input type="text" id="form3Example1c" placeholder="Name"
+                                                        class="form-control" name="name" required />
+
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <label class="form-label" for="form3Example3c">Your Email </label>
+                                                    <input type="email" id="form3Example3c" class="form-control"
+                                                        name="email" placeholder="Email" required />
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <label class="form-label" for="form3Example4c">Password </label>
+                                                    <input type="password" id="form3Example4c" class="form-control"
+                                                        name="password" placeholder="Enter the Password" required />
+
+                                                </div>
+                                            </div><br>
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <label class="form-label" for="form3Example4cd">Repeat your password
+                                                    </label>
+                                                    <input type="password" id="form3Example4cd" class="form-control"
+                                                        name="rpt password" placeholder="Re-Enter the Password"
+                                                        required />
+
+                                                </div>
+                                            </div><br>
+
+                                            <div class="form-check d-flex justify-content-center mb-5">
+                                                <input class="form-check-input me-2" type="checkbox" value=""
+                                                    id="form2Example3c" />
+                                                <label class="form-check-label" for="form2Example3">I agree all
+                                                    statements in <a href="#!">Terms of service</a>
+                                                </label>
+                                            </div>
+
+                                            <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                                <button type="button" class="btn btn-primary btn-lg"
+                                                    onclick="window.location.href='/home'">Register</button>
+                                            </div><br>
+
+                                        </form>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </center>
+</body>
+
+</html>
