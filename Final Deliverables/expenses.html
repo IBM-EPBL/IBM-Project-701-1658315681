@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Add Expense</title>
+    <style>
+          .main {
+  margin-left: 300px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+  
+}
+  .container{
+    margin-left: 300px;
+    
+  }
+.sidenav a {
+  text-decoration: none;
+  color: #818181;
+  display: block;
+}
+.sidenav a:hover {
+  color: #ff0000;
+}
+
+
+#mySidenav a {
+  position: absolute;
+  left: -60px;
+  margin-top:50px;
+  transition: 0.3s;
+  padding: 15px;
+  width: 100px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  border-radius: 0 5px 5px 0;
+}
+.fs-4{
+  color: white;
+}
+#mySidenav a:hover {
+  left: 0;
+  right: 100;
+}
+
+#home {
+  top: 20px;
+  background-color: #04AA6D;
+}
+
+#dashboard {
+  top: 80px;
+  background-color: #2196F3;
+}
+
+#expenses {
+  top: 140px;
+  background-color: #f44336;
+}
+
+#product {
+  top: 200px;
+  background-color: #555
+}
+    </style>
+  </head> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+        function addGroup(e) {
+            // e.preventDefault();
+            group = window.prompt('Enter group name: ')
+            console.log('PROMPT WINDOW SHOWN'+group);
+
+            const formData = new FormData();
+            formData.append("groupname", group);
+
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var groupid= JSON.parse(this.responseText);
+                    console.log(groupid);
+                    // create option using DOM
+                    const newOption = document.createElement('option');
+                    const optionText = document.createTextNode(groupid['groupname']);
+                    newOption.appendChild(optionText);
+                    newOption.setAttribute('value',groupid['groupID']); 
+                    const selectDropdown = document.getElementById('group');
+                    selectDropdown.appendChild(newOption);
+                    console.log('GROUPID :'+ groupid['groupID']);
+                }
+            }
+            xhttp.open("POST", "http://localhost:5000/addgroup");
+            xhttp.send(formData);
+        }
+    </script>
+    <body>
+
+        <nav class="navbar bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+              <img src={{url_for('static', filename="logo.png" )}} alt="Logo" width="30" height="24"
+                class="d-inline-block align-text-top">
+              PERSONAL EXPENSES TRACKER APPLICATION
+            </a>
+            <button type="button" class="btn btn-primary accountButton" onclick="loadLoginPage();" id="logoutbutton">Log out</button>
+          </div>
+        </nav>
+      
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark sidenav" style="width: 280px; position: fixed; height: 95%; top: 1; bottom: 5; left: 0;">
+          <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+            <span class="fs-4">MENU</span>
+          </a>
+          <hr>
+      
+      <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+      <div id="mySidenav" class="sidenav">
+        <a href="/home" id="home">HOME</a>
+        <a href="/dashboard" id="dashboard">DASHBOARD</a>
+        <a href="/expenses" id="expenses">EXPENSES</a>
+        <a href="/product" id="product">PRODUCT</a>
+      </div>
+      </ul>
+      <hr>
+          <div class="dropdown">
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+              <strong>mdo</strong>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+              <li><a class="dropdown-item" href="#">New project...</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Sign out</a></li>
+            </ul>
+          </div>
+        </div>
+      
+            <div class="col py-3" style="background-color:#00AD83">
+                <h3 style="color:white; text-align: center;">Add expense</h3>
+                <div class="container mt-3" style="width: 600px;">
+                    <div class="card shadow-lg bg-white rounded">
+                        <form action="/addexpense" method="POST">
+                            <div class="card-header" style="text-align: center;">
+                              <span style="display:inline-flex"><h4>Expense Made</h4><img src="pay.png" style=" margin-left:10px; width:30px; height:30px"></span>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="amountspent" class="form-label">Amount Spent: (Rs) </label>
+                                    <input type="number" class="form-control" name="amountspent" id="amountspent" placeholder="100.00" required>
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="expensecategory" class="form-label">Expense Category: </label>
+                                    <select name="category" id="category" class="form-control" placeholder="Select a category">
+                                        <option value="">Select a category</option>
+                                        {% for cat in categories %}
+                                            <option value="{{ cat[0] }}">{{ cat[1] }}</option>
+                                        {% endfor %}
+                                    </select>
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="date" class="form-label">Date of Expense: </label>
+                                    <input type="date" class="form-control" name="date" id="date" required></input>
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="description" class="form-label">Description of Expense: </label>
+                                    <input type="text" class="form-control" name="description" id="description"></input>
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="group" class="form-label">Group(if needed): </label>
+                                    <div title="New group" style="float:right" value="Create group" onclick="addGroup()">ADD GROUP</div><br/>
+                                    
+                                    <select name="group" id="group" class="form-control">
+                                        <option value="">Select existing group</option>
+                                        {% for group in groups %}
+                                            <option value="{{ group[0] }}">{{ group[1] }}</option>
+                                        {% endfor %}
+                                    </select>
+                                  </div>
+                            </div>
+                            <div class="card-footer text-muted" style="text-align:center">
+                              <button type="submit" value="submit" style="background-color:#00AD83; border-color:#00AD83; border-radius:5px;">Submit Expense</button>
+                            </div>
+                        </form>
+                      </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    </body>
+    <script>
+        document.querySelector('#date').valueAsDate = new Date();
+    </script>
+</html>
